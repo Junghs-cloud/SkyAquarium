@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<itemData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item>
+		<ID>1001</ID>
+		<itemName>산호 A-1</itemName>
+		<spriteName>coralA_1</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1002</ID>
+		<itemName>산호 A-2</itemName>
+		<spriteName>coralA_2</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1003</ID>
+		<itemName>산호 A-3</itemName>
+		<spriteName>coralA_3</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1004</ID>
+		<itemName>산호 A-4</itemName>
+		<spriteName>coralA_4</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1005</ID>
+		<itemName>산호 A-5</itemName>
+		<spriteName>coralA_5</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1006</ID>
+		<itemName>산호 B-1</itemName>
+		<spriteName>coralB_1</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1007</ID>
+		<itemName>산호 B-2</itemName>
+		<spriteName>coralB_2</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1008</ID>
+		<itemName>산호 B-3</itemName>
+		<spriteName>coralB_3</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1009</ID>
+		<itemName>해초 A-1</itemName>
+		<spriteName>seaweedA</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1010</ID>
+		<itemName>해초 B-2</itemName>
+		<spriteName>seaweedB</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1011</ID>
+		<itemName>해초 C-1</itemName>
+		<spriteName>seaweedC_1</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1012</ID>
+		<itemName>해초 C-2</itemName>
+		<spriteName>seaweedC_2</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>1012</ID>
+		<itemName>해초 C-3</itemName>
+		<spriteName>seaweedC_3</spriteName>
+		<sellCost>1000</sellCost>
+	</item>
+</itemData>
