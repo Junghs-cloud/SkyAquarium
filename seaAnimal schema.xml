@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<seaAnimal>
+	<information>
+	<ID>""</ID>
+	<seaAnimalName>""</seaAnimalName>
+	<sellCost>""</sellCost>
+	<sellEXP>""</sellEXP>
+	</information>
+
+	<information>
+	<ID>""</ID>
+	<seaAnimalName>""</seaAnimalName>
+	<sellCost>""</sellCost>
+	<sellEXP>""</sellEXP>
+	</information>
+
+    	<earnMoney>
+	<ID>""</ID>
+	<seaAnimalName>""</seaAnimalName>
+	<level1>""</level1>
+	<level2>""</level2>
+	<level3>""</level3>
+	<level4>""</level4>
+	<level5>""</level5>
+	<level6>""</level6>
+	<level7>""</level7>
+	<level8>""</level8>
+	<level9>""</level9>
+	<level10>""</level10>
+	<maxMoney>""</maxMoney>
+	</earnMoney>
+
+    	<earnMoney>
+	<ID>""</ID>
+	<seaAnimalName>""</seaAnimalName>
+	<level1>""</level1>
+	<level2>""</level2>
+	<level3>""</level3>
+	<level4>""</level4>
+	<level5>""</level5>
+	<level6>""</level6>
+	<level7>""</level7>
+	<level8>""</level8>
+	<level9>""</level9>
+	<level10>""</level10>
+	<maxMoney>""</maxMoney>
+	</earnMoney>
+</seaAnimal>

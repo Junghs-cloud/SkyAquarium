@@ -109,7 +109,7 @@ public class decorationManager : MonoBehaviour
     {
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero, 0f);
-        if (hit.collider != null && hit.transform.gameObject.tag == "decoration" && EventSystem.current.IsPointerOverGameObject() == false)
+        if (hit.collider != null && (hit.transform.gameObject.tag == "decoration" || hit.transform.gameObject.tag == "building") && EventSystem.current.IsPointerOverGameObject() == false)
         {
             selectedItem = hit.transform.gameObject;
             selectedItemSpriteName = selectedItem.GetComponent<SpriteRenderer>().sprite.name;
@@ -137,7 +137,6 @@ public class decorationManager : MonoBehaviour
 
     void store()
     {
-        //상점에서 구매시 구매 금액만큼 빠져나가게 하기 구현
         int inventorySameItemIndex = inventory.FindIndex(item => item.itemSpriteName == selectedItemSpriteName);
         if (inventorySameItemIndex == -1)
         {
@@ -148,9 +147,13 @@ public class decorationManager : MonoBehaviour
             int currentItemCount = ++inventory[inventorySameItemIndex].itemCount;
             playerData.instance.inventoryCells[inventorySameItemIndex].itemCount = currentItemCount;
         }
+        if (currentEditType == editType.buy)
+        {
+            playerData.instance.setMoney(playerData.instance.money - buyingItemCost);
+            currentEditType = editType.NULL;
+        }
         groundItem selectedGroundItem = playerData.instance.groundItems.Find(item => item.itemName == selectedItemName && item.x == selectedItemOriginalPosition.x && item.y== selectedItemOriginalPosition.y);
         playerData.instance.groundItems.Remove(selectedGroundItem);
-        Debug.Log(playerData.instance.groundItems.Count);
         GameObject.Destroy(selectedItem);
         selectedItem = null;
         decorationOptions.SetActive(false);
@@ -176,9 +179,7 @@ public class decorationManager : MonoBehaviour
         Vector3 selectedItemPosition = selectedItem.transform.position;
         if (currentEditType == editType.edit)
         {
-            Debug.Log(selectedItemName);
             int groundItemSameItemIndex = playerData.instance.groundItems.FindIndex(item => item.itemName == selectedItemName && item.x == selectedItemOriginalPosition.x && item.y == selectedItemOriginalPosition.y);
-            Debug.Log(groundItemSameItemIndex);
             playerData.instance.groundItems[groundItemSameItemIndex].x = selectedItemPosition.x;
             playerData.instance.groundItems[groundItemSameItemIndex].y = selectedItemPosition.y;
         }
@@ -203,10 +204,11 @@ public class decorationManager : MonoBehaviour
         playerData.instance.inventoryCells.Add(inventoryCellScript);
     }
 
-    public void setSelectedItem(GameObject selectedItem, string itemName)
+    public void setSelectedItem(GameObject selectedItem, string itemName, string itemSpriteName)
     {
         this.selectedItem = selectedItem;
         selectedItemName = itemName;
+        selectedItemSpriteName= itemSpriteName;
         selectedItemOriginalPosition = Vector3.zero;
     }
 

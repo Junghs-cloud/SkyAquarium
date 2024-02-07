@@ -73,9 +73,105 @@
 		<sellCost>1000</sellCost>
 	</item>
 	<item>
-		<ID>1012</ID>
+		<ID>1013</ID>
 		<itemName>해초 C-3</itemName>
 		<spriteName>seaweedC_3</spriteName>
 		<sellCost>1000</sellCost>
+	</item>
+	<item>
+		<ID>2001</ID>
+		<itemName>빌딩 A</itemName>
+		<spriteName>building1</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2002</ID>
+		<itemName>빌딩 B</itemName>
+		<spriteName>building2</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2003</ID>
+		<itemName>빌딩 C</itemName>
+		<spriteName>building3</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2004</ID>
+		<itemName>빌딩 D</itemName>
+		<spriteName>building4</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2005</ID>
+		<itemName>빌딩 E</itemName>
+		<spriteName>building5</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2006</ID>
+		<itemName>빌딩 F</itemName>
+		<spriteName>building6</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2007</ID>
+		<itemName>빌딩 G</itemName>
+		<spriteName>building7</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2008</ID>
+		<itemName>빌딩 H</itemName>
+		<spriteName>building8</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2009</ID>
+		<itemName>빌딩 I</itemName>
+		<spriteName>building9</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2010</ID>
+		<itemName>빌딩 J</itemName>
+		<spriteName>building10</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2011</ID>
+		<itemName>빌딩 K</itemName>
+		<spriteName>building11</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2012</ID>
+		<itemName>빌딩 L</itemName>
+		<spriteName>building12</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2013</ID>
+		<itemName>빌딩 M</itemName>
+		<spriteName>building13</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2014</ID>
+		<itemName>빌딩 N</itemName>
+		<spriteName>building14</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2015</ID>
+		<itemName>빌딩 O</itemName>
+		<spriteName>building15</spriteName>
+		<sellCost>3000</sellCost>
+	</item>
+	<item>
+		<ID>2016</ID>
+		<itemName>빌딩 P</itemName>
+		<spriteName>building16</spriteName>
+		<sellCost>3000</sellCost>
 	</item>
 </itemData>

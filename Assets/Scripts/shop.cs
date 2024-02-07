@@ -8,49 +8,77 @@ public class shop : MonoBehaviour
 {
     public GameObject fishPanel;
     public GameObject decorationPanel;
-    public GameObject farmPanel;
+    public GameObject buildingPanel;
 
     public Button fishButton;
     public Button decorationButton;
-    public Button farmButton;
+    public Button buildingButton;
 
     public TMP_Text sectionInfoText;
+
     void Start()
     {
         fishButton.onClick.AddListener(setButtonsPostion1);
-        decorationButton.onClick.AddListener(setButtonsPostion2);
+        buildingButton.onClick.AddListener(setButtonsPostion2);
+        decorationButton.onClick.AddListener(setButtonsPostion3);
+    }
+
+    void OnDisable()
+    {
+        setButtonsPostion1();
     }
 
     void setButtonsPostion1()
     {
+        fishPanel.SetActive(true);
         decorationPanel.SetActive(false);
-        farmPanel.SetActive(false);
+        buildingPanel.SetActive(false);
 
         sectionInfoText.text = "해양생물";
 
-        RectTransform rectTransform = fishButton.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-870, 360);
-        rectTransform.sizeDelta= new Vector2(160, 60);
-
-        rectTransform = decorationButton.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-830, 180);
-        rectTransform.sizeDelta = new Vector2(80, 60);
+        makeButtonBig(fishButton, 360);
+        makeButtonSmall(buildingButton, 270);
+        makeButtonSmall(decorationButton, 180);
     }
 
     void setButtonsPostion2()
     {
         fishPanel.SetActive(false);
-        farmPanel.SetActive(false);
+        buildingPanel.SetActive(true);
+        decorationPanel.SetActive(false);
+
+        sectionInfoText.text = "건축물";
+
+        makeButtonSmall(fishButton, 360);
+        makeButtonBig(buildingButton, 270);
+        makeButtonSmall(decorationButton, 180);
+    }
+
+    void setButtonsPostion3()
+    {
+        fishPanel.SetActive(false);
+        buildingPanel.SetActive(false);
+        decorationPanel.SetActive(true);
 
         sectionInfoText.text = "데코레이션";
 
-        RectTransform rectTransform = fishButton.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-830, 360);
-        rectTransform.sizeDelta = new Vector2(80, 60);
+        makeButtonSmall(fishButton, 360);
+        makeButtonSmall(buildingButton, 270);
+        makeButtonBig(decorationButton, 180);
+    }
 
-        rectTransform = decorationButton.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(-870, 180);
+    void makeButtonBig(Button button, int posY)
+    {
+        RectTransform rectTransform = button.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(-870, posY);
         rectTransform.sizeDelta = new Vector2(160, 60);
+    }
+
+    void makeButtonSmall(Button button, int posY)
+    {
+        RectTransform rectTransform = button.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(-830, posY);
+        rectTransform.sizeDelta = new Vector2(80, 60);
     }
 }
 

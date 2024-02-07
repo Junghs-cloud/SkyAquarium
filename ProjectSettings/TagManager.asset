@@ -6,6 +6,7 @@ TagManager:
   tags:
   - decoration
   - seaAnimal
+  - building
   layers:
   - Default
   - TransparentFX

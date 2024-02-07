@@ -6,7 +6,9 @@ using System.Xml;
 public class xmlReader : MonoBehaviour
 {
     public static xmlReader instance;
-    XmlNodeList nodes;
+    XmlNodeList itemNodes;
+    XmlNodeList fishMoneyNodes;
+
     void Awake()
     {
         instance = this;
@@ -19,20 +21,19 @@ public class xmlReader : MonoBehaviour
 
     void loadXML()
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Item");
+        TextAsset ItemTextAsset = (TextAsset)Resources.Load("Item");
+        TextAsset fishMoneyTextAsset =(TextAsset) Resources.Load("seaAnimal_EarnMoney");
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
-        nodes = xmlDoc.SelectNodes("itemData/item");
-        foreach (XmlNode node in nodes)
-        {
-            Debug.Log(node.SelectSingleNode("itemName").InnerText);
-        }
+        xmlDoc.LoadXml(ItemTextAsset.text);
+        itemNodes = xmlDoc.SelectNodes("itemData/item");
+        xmlDoc.LoadXml(fishMoneyTextAsset.text);
+        fishMoneyNodes = xmlDoc.SelectNodes("seaAnimal/earnMoney");
     }
 
     public string getItemName(string spriteName)
     {
         string itemName="";
-        foreach (XmlNode node in nodes)
+        foreach (XmlNode node in itemNodes)
         {
             if (node.SelectSingleNode("spriteName").InnerText == spriteName)
             {
@@ -46,7 +47,7 @@ public class xmlReader : MonoBehaviour
     public string getSpriteName(string itemName)
     {
         string spriteName = "";
-        foreach (XmlNode node in nodes)
+        foreach (XmlNode node in itemNodes)
         {
             if (node.SelectSingleNode("itemName").InnerText == itemName)
             {
@@ -60,7 +61,7 @@ public class xmlReader : MonoBehaviour
     public int getSellCost(string spriteName)
     {
         int sellCost = 0;
-        foreach (XmlNode node in nodes)
+        foreach (XmlNode node in itemNodes)
         {
             if (node.SelectSingleNode("spriteName").InnerText == spriteName)
             {
@@ -69,5 +70,35 @@ public class xmlReader : MonoBehaviour
             }
         }
         return sellCost;
+    }
+
+    public float getMoneyPerSec(string seaAnimalName, int level)
+    {
+        float moneyPerSec = 0;
+        foreach (XmlNode node in fishMoneyNodes)
+        {
+            if (node.SelectSingleNode("seaAnimalName").InnerText == seaAnimalName)
+            {
+                
+                moneyPerSec = float.Parse(node.SelectSingleNode("level"+level).InnerText);
+                break;
+            }
+        }
+        return moneyPerSec;
+    }
+
+    public int getMaxMoney(string seaAnimalName)
+    {
+        int maxMoney = 0;
+        foreach (XmlNode node in fishMoneyNodes)
+        {
+            if (node.SelectSingleNode("seaAnimalName").InnerText == seaAnimalName)
+            {
+
+                maxMoney = int.Parse(node.SelectSingleNode("maxMoney").InnerText);
+                break;
+            }
+        }
+        return maxMoney;
     }
 }

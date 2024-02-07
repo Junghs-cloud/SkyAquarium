@@ -53,7 +53,7 @@ public class groundItem
 public class playerData : MonoBehaviour
 {
     public static playerData instance;
-    string nickname;
+    public string nickname;
     public int rank;
     int exp;
 

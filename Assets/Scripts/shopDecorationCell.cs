@@ -43,7 +43,7 @@ public class shopDecorationCell : shopCell
         generatedItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
         generatedItem.AddComponent<BoxCollider2D>();
         generatedItem.GetComponent<BoxCollider2D>().enabled = true;
-        decorationManager.instance.setSelectedItem(generatedItem, itemName);
+        decorationManager.instance.setSelectedItem(generatedItem, itemName, spriteName);
         
     }
 }

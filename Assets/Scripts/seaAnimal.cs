@@ -96,4 +96,10 @@ public class seaAnimal : MonoBehaviour
 
         targetpos = new Vector3(x, y, 0);
     }
+
+    public void getCurrentMoneyAndFoodInfo()
+    {
+       moneyPerSec= xmlReader.instance.getMoneyPerSec(seaAnimalName, level);
+        maxMoney = xmlReader.instance.getMaxMoney(seaAnimalName);
+    }
 }

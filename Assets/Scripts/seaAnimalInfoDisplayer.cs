@@ -43,6 +43,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
                 currentClickMarineAnimal = playerData.instance.marineAnimals.Find(seaAnimal => seaAnimal.instanceID == currentClickAnimal.gameObject.GetInstanceID());
                 seaAnimalName.text = currentClickAnimal.seaAnimalName;
                 updateLevelInformation();
+                updateMoneyInformation();
                 collectButton.gameObject.SetActive(true);
                 statusButton.SetActive(true);
             }
@@ -57,7 +58,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
 
     void collect()
     {
-        long currentUnixTime = getCurrentUnixTime();
+        long currentUnixTime = utility.getCurrentUnixTime();
         long lastCollectTime = currentClickMarineAnimal.lastCollect;
         long earnMoney = (long) ((currentUnixTime - lastCollectTime) * currentClickAnimal.moneyPerSec);
         if (earnMoney > currentClickAnimal.maxMoney)
@@ -66,6 +67,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         }
         if (earnMoney != 0)
         {
+            Debug.Log(earnMoney);
             currentClickMarineAnimal.lastCollect = currentUnixTime;
             playerData.instance.setMoney(playerData.instance.money + (int)earnMoney);
         }
@@ -80,8 +82,12 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         currentClickAnimal.levelProgress++;
         if (currentClickAnimal.levelProgress == 5)
         {
-            currentClickAnimal.levelProgress = 0;
-            currentClickAnimal.level++;
+            if (currentClickAnimal.level != 5)
+            {
+                currentClickAnimal.levelProgress = 0;
+                currentClickAnimal.level++;
+                updateMoneyInformation();
+            }
         }
         updateLevelInformation();
     }
@@ -96,6 +102,12 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         statusButton.SetActive(false);
     }
 
+    void updateMoneyInformation()
+    {
+        currentClickAnimal.getCurrentMoneyAndFoodInfo();
+        moneyPerSec.text = currentClickAnimal.moneyPerSec.ToString();
+    }
+
     void updateLevelInformation()
     {
         levelProgressText.text = currentClickAnimal.levelProgress.ToString() + " / 5";
@@ -105,11 +117,4 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         currentClickMarineAnimal.levelProgress = currentClickAnimal.levelProgress;
     }
 
-    public long getCurrentUnixTime()
-    {
-        var now = DateTime.Now.ToLocalTime();
-        var span = (now - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime());
-        long timestamp = (long)span.TotalSeconds;
-        return timestamp;
-    }
 }

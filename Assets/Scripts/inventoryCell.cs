@@ -84,7 +84,7 @@ public class inventoryCell : MonoBehaviour
         itemPrefab.GetComponent<SpriteRenderer>().sortingOrder = 2;
         itemPrefab.AddComponent<BoxCollider2D>();
         GameObject generatedItem = Instantiate(itemPrefab);
-        decorationManager.instance.setSelectedItem(generatedItem, itemName);
+        decorationManager.instance.setSelectedItem(generatedItem, itemName, spriteName);
         playerData.instance.groundItems.Add(new groundItem(itemName, spriteName, 0f, 0f));
         decorationOptions.SetActive(true);
     }
