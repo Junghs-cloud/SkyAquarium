@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<seaAnimal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<information>
+		<ID>1</ID>
+		<seaAnimalName>금붕어</seaAnimalName>
+		<sellCost>200</sellCost>
+		<sellEXP>3</sellEXP>
+	</information>
+	<information>
+		<ID>2</ID>
+		<seaAnimalName>물고기 A</seaAnimalName>
+		<sellCost>500</sellCost>
+		<sellEXP>5</sellEXP>
+	</information>
+	<information>
+		<ID>3</ID>
+		<seaAnimalName>물고기 B</seaAnimalName>
+		<sellCost>1000</sellCost>
+		<sellEXP>10</sellEXP>
+	</information>
+	<information>
+		<ID>4</ID>
+		<seaAnimalName>물고기 C</seaAnimalName>
+		<sellCost>2500</sellCost>
+		<sellEXP>10</sellEXP>
+	</information>
+	<information>
+		<ID>5</ID>
+		<seaAnimalName>물고기 D</seaAnimalName>
+		<sellCost>5000</sellCost>
+		<sellEXP>20</sellEXP>
+	</information>
+	<information>
+		<ID>6</ID>
+		<seaAnimalName>물고기 E</seaAnimalName>
+		<sellCost>3000</sellCost>
+		<sellEXP>25</sellEXP>
+	</information>
+	<information>
+		<ID>7</ID>
+		<seaAnimalName>물고기 F</seaAnimalName>
+		<sellCost>6000</sellCost>
+		<sellEXP>30</sellEXP>
+	</information>
+	<information>
+		<ID>8</ID>
+		<seaAnimalName>물고기 G</seaAnimalName>
+		<sellCost>5000</sellCost>
+		<sellEXP>50</sellEXP>
+	</information>
+	<information>
+		<ID>9</ID>
+		<seaAnimalName>물고기 H</seaAnimalName>
+		<sellCost>10000</sellCost>
+		<sellEXP>70</sellEXP>
+	</information>
+	<information>
+		<ID>10</ID>
+		<seaAnimalName>물고기 I</seaAnimalName>
+		<sellCost>12500</sellCost>
+		<sellEXP>75</sellEXP>
+	</information>
+	<information>
+		<ID>11</ID>
+		<seaAnimalName>물고기 J</seaAnimalName>
+		<sellCost>14000</sellCost>
+		<sellEXP>100</sellEXP>
+	</information>
+	<information>
+		<ID>12</ID>
+		<seaAnimalName>물고기 K</seaAnimalName>
+		<sellCost>16000</sellCost>
+		<sellEXP>150</sellEXP>
+	</information>
+	<information>
+		<ID>13</ID>
+		<seaAnimalName>물고기 L</seaAnimalName>
+		<sellCost>20000</sellCost>
+		<sellEXP>175</sellEXP>
+	</information>
+	<information>
+		<ID>14</ID>
+		<seaAnimalName>바다거북</seaAnimalName>
+		<sellCost>25000</sellCost>
+		<sellEXP>300</sellEXP>
+	</information>
+	<information>
+		<ID>15</ID>
+		<seaAnimalName>상어</seaAnimalName>
+		<sellCost>50000</sellCost>
+		<sellEXP>300</sellEXP>
+	</information>
+	<information>
+		<ID>16</ID>
+		<seaAnimalName>고래</seaAnimalName>
+		<sellCost>100000</sellCost>
+		<sellEXP>500</sellEXP>
+	</information>
+</seaAnimal>

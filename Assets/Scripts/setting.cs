@@ -35,7 +35,15 @@ public class setting : MonoBehaviour
         bgmNum--;
         if (bgmNum == -1)
         {
-            bgmNum= bgmNum + 4;
+            bgmNum = bgmNum + 8;
+        }
+        while (playerData.instance.musicUnLock[bgmNum] == false)
+        {
+            bgmNum--;
+            if (bgmNum == -1)
+            {
+                bgmNum = bgmNum + 8;
+            }
         }
         playBGM();
     }
@@ -43,9 +51,17 @@ public class setting : MonoBehaviour
     void rightClick()
     {
         bgmNum++;
-        if (bgmNum == 4)
+        if (bgmNum == 8)
         {
-            bgmNum = bgmNum - 4;
+            bgmNum = bgmNum - 8;
+        }
+        while (playerData.instance.musicUnLock[bgmNum] == false)
+        {
+            bgmNum++;
+            if (bgmNum == 8)
+            {
+                bgmNum = bgmNum - 8;
+            }
         }
         playBGM();
     }
@@ -55,8 +71,6 @@ public class setting : MonoBehaviour
         audioSource.clip = bgmlist[bgmNum];
         audioSource.Play();
         string bgmName = bgmlist[bgmNum].name;
-        int index=bgmName.IndexOf("-");
-        bgmName = bgmName.Substring(index + 1);
         bgmNameText.text = "BGM " + (bgmNum + 1).ToString()+": "+bgmName;
     }
 

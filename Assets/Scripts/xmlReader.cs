@@ -8,7 +8,8 @@ public class xmlReader : MonoBehaviour
     public static xmlReader instance;
     XmlNodeList itemNodes;
     XmlNodeList fishMoneyNodes;
-
+    XmlNodeList fishFoodNodes;
+    XmlNodeList fishInformationNodes;
     void Awake()
     {
         instance = this;
@@ -28,6 +29,8 @@ public class xmlReader : MonoBehaviour
         itemNodes = xmlDoc.SelectNodes("itemData/item");
         xmlDoc.LoadXml(fishMoneyTextAsset.text);
         fishMoneyNodes = xmlDoc.SelectNodes("seaAnimal/earnMoney");
+        fishFoodNodes = xmlDoc.SelectNodes("seaAnimal/food");
+        fishInformationNodes = xmlDoc.SelectNodes("seaAnimal/information");
     }
 
     public string getItemName(string spriteName)
@@ -100,5 +103,49 @@ public class xmlReader : MonoBehaviour
             }
         }
         return maxMoney;
+    }
+
+    public int getFoodAmount(string seaAnimalName, int level)
+    {
+        int levelFood = 0;
+        foreach (XmlNode node in fishFoodNodes)
+        {
+            if (node.SelectSingleNode("seaAnimalName").InnerText == seaAnimalName)
+            {
+
+                levelFood = int.Parse(node.SelectSingleNode("level" + level).InnerText);
+                break;
+            }
+        }
+        return levelFood;
+    }
+
+    public int getSeaAnimalSellCost(string seaAnimalName)
+    {
+        int sellCost = 0;
+        foreach (XmlNode node in fishInformationNodes)
+        {
+            if (node.SelectSingleNode("seaAnimalName").InnerText == seaAnimalName)
+            {
+                sellCost = int.Parse(node.SelectSingleNode("sellCost").InnerText);
+                break;
+            }
+        }
+        return sellCost;
+    }
+
+    public int getSellEXP(string seaAnimalName)
+    {
+        int sellEXP = 0;
+        foreach (XmlNode node in fishInformationNodes)
+        {
+            if (node.SelectSingleNode("seaAnimalName").InnerText == seaAnimalName)
+            {
+
+                sellEXP = int.Parse(node.SelectSingleNode("sellEXP").InnerText);
+                break;
+            }
+        }
+        return sellEXP;
     }
 }

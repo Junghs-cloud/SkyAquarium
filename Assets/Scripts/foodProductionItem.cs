@@ -8,7 +8,7 @@ public class foodProductionItem : MonoBehaviour
 {
     public string itemName;
     public string timeStr;
-    public long timeLong;
+
     public int productionCount;
     public int cost;
 
@@ -17,6 +17,8 @@ public class foodProductionItem : MonoBehaviour
     public TMP_Text productionCountText;
     public TMP_Text costText;
 
+    [HideInInspector]
+    public long timeLong;
     void Start()
     {
         itemNameText.text = itemName;

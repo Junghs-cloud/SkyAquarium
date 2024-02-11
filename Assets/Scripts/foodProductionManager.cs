@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using TMPro;
 
 public class foodProductionManager : MonoBehaviour
 {
@@ -13,12 +14,19 @@ public class foodProductionManager : MonoBehaviour
     building selectedBuildingScript;
     public foodProductionProcessPanel processScript;
 
+    public GameObject canNotBuyPanel;
+    TMP_Text canNotBuyPanelText;
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+    }
+
+    void Start()
+    {
+        canNotBuyPanelText = canNotBuyPanel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
     }
 
     void Update()
@@ -69,10 +77,19 @@ public class foodProductionManager : MonoBehaviour
 
     public void setCurrentProduction(foodProductionItem selectedItem)
     {
-        selectedBuildingScript.currentProduction = selectedItem;
-        selectedBuildingScript.productionStartTime = utility.getCurrentUnixTime();
-        selectedBuildingScript.productionEndTime = selectedBuildingScript.productionStartTime + selectedItem.timeLong;
-        foodProductionPanel.SetActive(false);
+        if (playerData.instance.money < selectedItem.cost)
+        {
+            canNotBuyPanelText.text = "소지 금액이 부족하여 구매할 수 없습니다.";
+            canNotBuyPanel.SetActive(true);
+        }
+        else
+        {
+            playerData.instance.setMoney(playerData.instance.money - selectedItem.cost);
+            selectedBuildingScript.currentProduction = selectedItem;
+            selectedBuildingScript.productionStartTime = utility.getCurrentUnixTime();
+            selectedBuildingScript.productionEndTime = selectedBuildingScript.productionStartTime + selectedItem.timeLong;
+            foodProductionPanel.SetActive(false);
+        }
     }
 
     void finishproduction()

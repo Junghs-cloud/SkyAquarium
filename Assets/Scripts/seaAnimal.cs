@@ -21,6 +21,9 @@ public class seaAnimal : MonoBehaviour
     public int foodAmount;
     public int maxMoney;
 
+    public int sellCost;
+    public int sellEXP;
+
     void Start()
     {
         float x = Random.Range(-28, 28);
@@ -28,6 +31,8 @@ public class seaAnimal : MonoBehaviour
         position = new Vector3(x, y, 0);
         transform.position = position;
         getNewTargetPos();
+        sellCost = xmlReader.instance.getSeaAnimalSellCost(seaAnimalName);
+        sellEXP = xmlReader.instance.getSellEXP(seaAnimalName);
     }
 
     void Update()
@@ -100,6 +105,7 @@ public class seaAnimal : MonoBehaviour
     public void getCurrentMoneyAndFoodInfo()
     {
        moneyPerSec= xmlReader.instance.getMoneyPerSec(seaAnimalName, level);
+        foodAmount = xmlReader.instance.getFoodAmount(seaAnimalName, level);
         maxMoney = xmlReader.instance.getMaxMoney(seaAnimalName);
     }
 }

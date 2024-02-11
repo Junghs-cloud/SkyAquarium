@@ -55,7 +55,7 @@ public class playerData : MonoBehaviour
     public static playerData instance;
     public string nickname;
     public int rank;
-    int exp;
+    public int EXP;
 
     public int money;
     public int diamond;
@@ -68,6 +68,9 @@ public class playerData : MonoBehaviour
     public List<Item> inventory;
     public List<groundItem> groundItems;
     public List<inventoryCell> inventoryCells;
+    public bool[] musicUnLock = new bool[8];
+    public bool hasMoonBackground;
+    public int fishAmountLevel;
 
     void Awake()
     {
@@ -83,11 +86,25 @@ public class playerData : MonoBehaviour
         inventory = new List<Item>();
         groundItems = new List<groundItem>();
         inventoryCells = new List<inventoryCell>();
-
+        hasMoonBackground = false;
+        setMusicUnLock();
+       
         //testDatas
         groundItems.Add(new groundItem("산호 A-1", "coralA_1", -10.22f, -6.96f));
         groundItems.Add(new groundItem("산호 A-1", "coralA_1", -0.16f, -6.84f));
         groundItems.Add(new groundItem("산호 A-2", "coralA_2", -16.3f, -11.04f));
+    }
+
+    void setMusicUnLock()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            musicUnLock[i] = true;
+        }
+        for (int i = 4; i < 8; i++)
+        {
+            musicUnLock[i] = false;
+        }
     }
 
     public void setMoney(int newMoney)
@@ -112,5 +129,24 @@ public class playerData : MonoBehaviour
     {
         currentSeaAnimal = newSeaAnimalCount;
         playerUIManager.instance.updateCurrentSeaAnimalTMP();
+    }
+
+    public void setMaxSeaAnimal(int newMaxSeaAnimal)
+    {
+        maxSeaAnimal = newMaxSeaAnimal;
+        playerUIManager.instance.updateMaxSeaAnimalTMP();
+    }
+
+    public void setEXP(int newEXP)
+    {
+        EXP = newEXP;
+        if (EXP >= levelSystem.instance.currentLevelNeededEXP)
+        {
+            rank++;
+            EXP -= levelSystem.instance.currentLevelNeededEXP;
+            levelSystem.instance.unLockObjectsWithRank(rank);
+            playerUIManager.instance.changeRankText();
+        }
+        playerUIManager.instance.updateEXPSlider();
     }
 }

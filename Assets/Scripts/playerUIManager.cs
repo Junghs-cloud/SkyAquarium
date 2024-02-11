@@ -17,6 +17,7 @@ public class playerUIManager : MonoBehaviour
     public TMP_Text nicknameTMP;
     public TMP_Text rankTMP;
 
+    public Slider EXPSlider;
     void Awake()
     {
         if (instance == null)
@@ -42,5 +43,20 @@ public class playerUIManager : MonoBehaviour
     public void updateCurrentSeaAnimalTMP()
     {
         currentSeaAnimalTMP.text = playerData.instance.currentSeaAnimal.ToString();
+    }
+
+    public void updateMaxSeaAnimalTMP()
+    {
+        maxSeaAnimalTMP.text=playerData.instance.maxSeaAnimal.ToString();
+    }
+
+    public void updateEXPSlider()
+    {
+        EXPSlider.value = (float)playerData.instance.EXP / (float) levelSystem.instance.currentLevelNeededEXP;
+    }
+
+    public void changeRankText()
+    {
+        rankTMP.text = "RANK " + playerData.instance.rank.ToString();
     }
 }

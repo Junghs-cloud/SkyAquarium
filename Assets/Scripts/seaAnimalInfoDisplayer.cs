@@ -17,6 +17,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
     public TMP_Text levelProgressText;
     public TMP_Text moneyPerSec;
     public TMP_Text maxMoney;
+    public TMP_Text foodAmount;
 
     public Button collectButton;
     public Button feedButton;
@@ -43,7 +44,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
                 currentClickMarineAnimal = playerData.instance.marineAnimals.Find(seaAnimal => seaAnimal.instanceID == currentClickAnimal.gameObject.GetInstanceID());
                 seaAnimalName.text = currentClickAnimal.seaAnimalName;
                 updateLevelInformation();
-                updateMoneyInformation();
+                updateMoneyAndFoodInformation();
                 collectButton.gameObject.SetActive(true);
                 statusButton.SetActive(true);
             }
@@ -75,18 +76,19 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
 
     void feed()
     {
-        if (currentClickAnimal.level == 5 && currentClickAnimal.levelProgress == 5)
+        if (currentClickAnimal.level == 10 && currentClickAnimal.levelProgress == 5)
         {
             return;
         }
         currentClickAnimal.levelProgress++;
+        playerData.instance.setFood(playerData.instance.food - currentClickAnimal.foodAmount);
         if (currentClickAnimal.levelProgress == 5)
         {
-            if (currentClickAnimal.level != 5)
+            if (currentClickAnimal.level != 10)
             {
                 currentClickAnimal.levelProgress = 0;
                 currentClickAnimal.level++;
-                updateMoneyInformation();
+                updateMoneyAndFoodInformation();
             }
         }
         updateLevelInformation();
@@ -97,15 +99,19 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         playerData.instance.marineAnimals.Remove(currentClickMarineAnimal);
         GameObject.Destroy(currentClickAnimal.gameObject);
         playerData.instance.setCurrentSeaAnimal(playerData.instance.currentSeaAnimal - 1);
+        playerData.instance.setMoney(playerData.instance.money + currentClickAnimal.sellCost);
+        playerData.instance.setEXP(playerData.instance.EXP + currentClickAnimal.sellEXP);
         statusPanel.SetActive(false);
         collectButton.gameObject.SetActive(false);
         statusButton.SetActive(false);
     }
 
-    void updateMoneyInformation()
+    void updateMoneyAndFoodInformation()
     {
         currentClickAnimal.getCurrentMoneyAndFoodInfo();
         moneyPerSec.text = currentClickAnimal.moneyPerSec.ToString();
+        maxMoney.text=currentClickAnimal.maxMoney.ToString();
+        foodAmount.text=currentClickAnimal.foodAmount.ToString()+"°³ ¼Òºñ";
     }
 
     void updateLevelInformation()
