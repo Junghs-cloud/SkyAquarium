@@ -13,6 +13,7 @@ public class xmlReader : MonoBehaviour
     void Awake()
     {
         instance = this;
+        
     }
 
     void Start()
@@ -24,13 +25,14 @@ public class xmlReader : MonoBehaviour
     {
         TextAsset ItemTextAsset = (TextAsset)Resources.Load("Item");
         TextAsset fishMoneyTextAsset =(TextAsset) Resources.Load("seaAnimal_EarnMoney");
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(ItemTextAsset.text);
-        itemNodes = xmlDoc.SelectNodes("itemData/item");
-        xmlDoc.LoadXml(fishMoneyTextAsset.text);
-        fishMoneyNodes = xmlDoc.SelectNodes("seaAnimal/earnMoney");
-        fishFoodNodes = xmlDoc.SelectNodes("seaAnimal/food");
-        fishInformationNodes = xmlDoc.SelectNodes("seaAnimal/information");
+        XmlDocument xmlDoc1 = new XmlDocument();
+        XmlDocument xmlDoc2 = new XmlDocument();
+        xmlDoc1.LoadXml(ItemTextAsset.text);
+        itemNodes = xmlDoc1.SelectNodes("itemData/item");
+        xmlDoc2.LoadXml(fishMoneyTextAsset.text);
+        fishMoneyNodes = xmlDoc2.SelectNodes("seaAnimal/earnMoney");
+        fishFoodNodes = xmlDoc2.SelectNodes("seaAnimal/food");
+        fishInformationNodes = xmlDoc2.SelectNodes("seaAnimal/information");
     }
 
     public string getItemName(string spriteName)

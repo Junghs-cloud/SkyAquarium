@@ -38,13 +38,23 @@ public class shopDecorationCell : shopCell
 
     void addItemToGround()
     {
-        Sprite itemImage = Resources.Load<Sprite>("decoration/" + spriteName);
-        GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/new Item");
-        GameObject generatedItem = Instantiate(itemPrefab);
-        generatedItem.GetComponent<SpriteRenderer>().sprite = itemImage;
-        generatedItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        generatedItem.AddComponent<BoxCollider2D>();
-        generatedItem.GetComponent<BoxCollider2D>().enabled = true;
+        GameObject itemPrefab;
+        GameObject generatedItem;
+        if (spriteName.Contains("building") == true)
+        {
+            itemPrefab = Resources.Load<GameObject>("Prefabs/building/" + spriteName);
+            generatedItem = Instantiate(itemPrefab);
+        }
+        else
+        {
+            Sprite itemImage = Resources.Load<Sprite>("decoration/" + spriteName);
+            itemPrefab = Resources.Load<GameObject>("Prefabs/new Item");
+            generatedItem = Instantiate(itemPrefab);
+            generatedItem.GetComponent<SpriteRenderer>().sprite = itemImage;
+            generatedItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            generatedItem.AddComponent<BoxCollider2D>();
+            generatedItem.GetComponent<BoxCollider2D>().enabled = true;
+        }
         decorationManager.instance.setSelectedItem(generatedItem, itemName, spriteName);
         
     }

@@ -8,11 +8,13 @@ using TMPro;
 public class shopSeaAnimalCell : shopCell
 {
     public GameObject seaAnimalPrefab;
+    string spriteName;
 
     void Start()
     {
         buyButton = transform.GetChild(0).GetComponent<Button>();
         canNotBuyPanelText = canNotBuyPanel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+        spriteName = transform.GetChild(1).GetComponent<Image>().sprite.name;
         buyButton.onClick.AddListener(buyItem);
         getPaymentType();
         getItemCost();
@@ -23,7 +25,7 @@ public class shopSeaAnimalCell : shopCell
     {
         if (canBuy())
         {
-            if (playerData.instance.currentSeaAnimal == playerData.instance.maxSeaAnimal)
+            if (hasMaxSeaAnimal())
             {
                 canNotBuyPanelText.text = "최대 물고기 보유 수를 초과하여 해양생물을 구매할 수 없습니다.";
                 canNotBuyPanel.SetActive(true);
@@ -40,8 +42,21 @@ public class shopSeaAnimalCell : shopCell
         }
     }
 
+    bool hasMaxSeaAnimal()
+    {
+        if (playerData.instance.currentSeaAnimal == playerData.instance.maxSeaAnimal)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     void buySeaAnimal()
     {
+        setting.instance.playFishSplashSFX();
         shopPanel.SetActive(false);
         GameObject instantiatedSeaAnimal = Instantiate(seaAnimalPrefab);
         if (paymentType == payment.money)
@@ -54,6 +69,7 @@ public class shopSeaAnimalCell : shopCell
         }
         long currentTime = utility.getCurrentUnixTime();
         playerData.instance.setCurrentSeaAnimal(playerData.instance.currentSeaAnimal + 1);
-        playerData.instance.marineAnimals.Add(new marineAnimal(instantiatedSeaAnimal.GetInstanceID(), itemName, 1, 0, currentTime));
+        playerData.instance.marineAnimals.Add(new marineAnimal(instantiatedSeaAnimal.GetInstanceID(), itemName, spriteName, 1, 0, currentTime));
+        dataManager.instance.saveToJson();
     }
 }

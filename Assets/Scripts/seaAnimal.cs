@@ -104,7 +104,7 @@ public class seaAnimal : MonoBehaviour
 
     public void getCurrentMoneyAndFoodInfo()
     {
-       moneyPerSec= xmlReader.instance.getMoneyPerSec(seaAnimalName, level);
+        moneyPerSec= xmlReader.instance.getMoneyPerSec(seaAnimalName, level);
         foodAmount = xmlReader.instance.getFoodAmount(seaAnimalName, level);
         maxMoney = xmlReader.instance.getMaxMoney(seaAnimalName);
     }

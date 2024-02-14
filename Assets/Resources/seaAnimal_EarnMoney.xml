@@ -3,96 +3,112 @@
 	<information>
 		<ID>1</ID>
 		<seaAnimalName>금붕어</seaAnimalName>
+		<instantiateObjectName>goldfish</instantiateObjectName>
 		<sellCost>200</sellCost>
 		<sellEXP>3</sellEXP>
 	</information>
 	<information>
 		<ID>2</ID>
 		<seaAnimalName>물고기 A</seaAnimalName>
+		<instantiateObjectName>fishA</instantiateObjectName>
 		<sellCost>500</sellCost>
 		<sellEXP>5</sellEXP>
 	</information>
 	<information>
 		<ID>3</ID>
 		<seaAnimalName>물고기 B</seaAnimalName>
+		<instantiateObjectName>fishB</instantiateObjectName>
 		<sellCost>1000</sellCost>
 		<sellEXP>10</sellEXP>
 	</information>
 	<information>
 		<ID>4</ID>
 		<seaAnimalName>물고기 C</seaAnimalName>
+		<instantiateObjectName>fishC</instantiateObjectName>
 		<sellCost>2500</sellCost>
 		<sellEXP>10</sellEXP>
 	</information>
 	<information>
 		<ID>5</ID>
 		<seaAnimalName>물고기 D</seaAnimalName>
+		<instantiateObjectName>fishD</instantiateObjectName>
 		<sellCost>5000</sellCost>
 		<sellEXP>20</sellEXP>
 	</information>
 	<information>
 		<ID>6</ID>
 		<seaAnimalName>물고기 E</seaAnimalName>
+		<instantiateObjectName>fishE</instantiateObjectName>
 		<sellCost>3000</sellCost>
 		<sellEXP>25</sellEXP>
 	</information>
 	<information>
 		<ID>7</ID>
 		<seaAnimalName>물고기 F</seaAnimalName>
+		<instantiateObjectName>fishF</instantiateObjectName>
 		<sellCost>6000</sellCost>
 		<sellEXP>30</sellEXP>
 	</information>
 	<information>
 		<ID>8</ID>
 		<seaAnimalName>물고기 G</seaAnimalName>
+		<instantiateObjectName>fishG</instantiateObjectName>
 		<sellCost>5000</sellCost>
 		<sellEXP>50</sellEXP>
 	</information>
 	<information>
 		<ID>9</ID>
 		<seaAnimalName>물고기 H</seaAnimalName>
+		<instantiateObjectName>fishH</instantiateObjectName>
 		<sellCost>10000</sellCost>
 		<sellEXP>70</sellEXP>
 	</information>
 	<information>
 		<ID>10</ID>
 		<seaAnimalName>물고기 I</seaAnimalName>
+		<instantiateObjectName>fishI</instantiateObjectName>
 		<sellCost>12500</sellCost>
 		<sellEXP>75</sellEXP>
 	</information>
 	<information>
 		<ID>11</ID>
 		<seaAnimalName>물고기 J</seaAnimalName>
+		<instantiateObjectName>fishJ</instantiateObjectName>
 		<sellCost>14000</sellCost>
 		<sellEXP>100</sellEXP>
 	</information>
 	<information>
 		<ID>12</ID>
 		<seaAnimalName>물고기 K</seaAnimalName>
+		<instantiateObjectName>fishK</instantiateObjectName>
 		<sellCost>16000</sellCost>
 		<sellEXP>150</sellEXP>
 	</information>
 	<information>
 		<ID>13</ID>
 		<seaAnimalName>물고기 L</seaAnimalName>
+		<instantiateObjectName>fisL</instantiateObjectName>
 		<sellCost>20000</sellCost>
 		<sellEXP>175</sellEXP>
 	</information>
 	<information>
 		<ID>14</ID>
 		<seaAnimalName>바다거북</seaAnimalName>
+		<instantiateObjectName>seaturtle</instantiateObjectName>
 		<sellCost>25000</sellCost>
 		<sellEXP>300</sellEXP>
 	</information>
 	<information>
 		<ID>15</ID>
 		<seaAnimalName>상어</seaAnimalName>
+		<instantiateObjectName>shark</instantiateObjectName>
 		<sellCost>50000</sellCost>
 		<sellEXP>300</sellEXP>
 	</information>
 	<information>
 		<ID>16</ID>
 		<seaAnimalName>고래</seaAnimalName>
+		<instantiateObjectName>whale</instantiateObjectName>
 		<sellCost>100000</sellCost>
 		<sellEXP>500</sellEXP>
 	</information>

@@ -74,16 +74,27 @@ public class inventoryCell : MonoBehaviour
         }
         inventoryPanel.SetActive(false);
         addItemToGround();
+        dataManager.instance.saveToJson();
     }
 
     void addItemToGround()
     {
-        Sprite itemImage = Resources.Load<Sprite>("decoration/" + spriteName);
-        GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/new Item");
-        itemPrefab.GetComponent<SpriteRenderer>().sprite = itemImage;
-        itemPrefab.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        itemPrefab.AddComponent<BoxCollider2D>();
-        GameObject generatedItem = Instantiate(itemPrefab);
+        GameObject itemPrefab;
+        GameObject generatedItem;
+        if (spriteName.Contains("building") == true)
+        {
+            itemPrefab = Resources.Load<GameObject>("Prefabs/building/" + spriteName);
+            generatedItem = Instantiate(itemPrefab);
+        }
+        else
+        {
+            Sprite itemImage = Resources.Load<Sprite>("decoration/" + spriteName);
+            itemPrefab = Resources.Load<GameObject>("Prefabs/new Item");
+            itemPrefab.GetComponent<SpriteRenderer>().sprite = itemImage;
+            itemPrefab.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            itemPrefab.AddComponent<BoxCollider2D>();
+            generatedItem = Instantiate(itemPrefab);
+        }
         decorationManager.instance.setSelectedItem(generatedItem, itemName, spriteName);
         playerData.instance.groundItems.Add(new groundItem(itemName, spriteName, 0f, 0f));
         decorationOptions.SetActive(true);

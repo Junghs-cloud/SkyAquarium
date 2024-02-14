@@ -59,4 +59,9 @@ public class playerUIManager : MonoBehaviour
     {
         rankTMP.text = "RANK " + playerData.instance.rank.ToString();
     }
+
+    public void setPlayerNickname()
+    {
+        nicknameTMP.text = playerData.instance.nickname;
+    }
 }

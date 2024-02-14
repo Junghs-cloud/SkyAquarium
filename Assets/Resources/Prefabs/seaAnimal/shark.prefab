@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7886225358499726421}
   - component: {fileID: 7886225358499726410}
   m_Layer: 0
-  m_Name: great_white_shark
+  m_Name: shark
   m_TagString: seaAnimal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

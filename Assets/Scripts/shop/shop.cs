@@ -17,6 +17,7 @@ public class shop : MonoBehaviour
     public Button etcButton;
 
     public TMP_Text sectionInfoText;
+    public AudioSource SFXPlayer;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class shop : MonoBehaviour
         buildingButton.onClick.AddListener(setButtonsPostion2);
         decorationButton.onClick.AddListener(setButtonsPostion3);
         etcButton.onClick.AddListener(setButtonsPosition4);
+        SFXPlayer.playOnAwake = false;
     }
 
     void OnDisable()
@@ -104,6 +106,7 @@ public class shop : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(-830, posY);
         rectTransform.sizeDelta = new Vector2(80, 60);
     }
+
 }
 
 public class shopCell : MonoBehaviour

@@ -157,6 +157,7 @@ public class decorationManager : MonoBehaviour
         GameObject.Destroy(selectedItem);
         selectedItem = null;
         decorationOptions.SetActive(false);
+        dataManager.instance.saveToJson();
     }
 
     void sell()
@@ -172,6 +173,7 @@ public class decorationManager : MonoBehaviour
         GameObject.Destroy(selectedItem);
         selectedItem = null;
         decorationOptions.SetActive(false);
+        dataManager.instance.saveToJson();
     }
 
     void confirm()
@@ -191,6 +193,7 @@ public class decorationManager : MonoBehaviour
         }
         selectedItem = null;
         decorationOptions.SetActive(false);
+        dataManager.instance.saveToJson();
     }
 
     void addItemToPlayerData()
@@ -217,7 +220,7 @@ public class decorationManager : MonoBehaviour
         currentEditType = editType.edit;
     }
 
-    void returnToOriginal()
+    public void returnToOriginal()
     {
         if (decorationOptions.activeSelf == true)
         {

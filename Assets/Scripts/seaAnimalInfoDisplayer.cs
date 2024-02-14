@@ -71,6 +71,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
             Debug.Log(earnMoney);
             currentClickMarineAnimal.lastCollect = currentUnixTime;
             playerData.instance.setMoney(playerData.instance.money + (int)earnMoney);
+            dataManager.instance.saveToJson();
         }
     }
 
@@ -92,18 +93,20 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
             }
         }
         updateLevelInformation();
+        dataManager.instance.saveToJson();
     }
 
     void sell()
     {
         playerData.instance.marineAnimals.Remove(currentClickMarineAnimal);
-        GameObject.Destroy(currentClickAnimal.gameObject);
+        dataManager.instance.saveToJson();
         playerData.instance.setCurrentSeaAnimal(playerData.instance.currentSeaAnimal - 1);
         playerData.instance.setMoney(playerData.instance.money + currentClickAnimal.sellCost);
         playerData.instance.setEXP(playerData.instance.EXP + currentClickAnimal.sellEXP);
         statusPanel.SetActive(false);
         collectButton.gameObject.SetActive(false);
         statusButton.SetActive(false);
+        GameObject.Destroy(currentClickAnimal.gameObject);
     }
 
     void updateMoneyAndFoodInformation()
@@ -116,6 +119,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
 
     void updateLevelInformation()
     {
+        Debug.Log(currentClickAnimal+"  "+currentClickMarineAnimal);
         levelProgressText.text = currentClickAnimal.levelProgress.ToString() + " / 5";
         levelProgressBar.value = (float) currentClickAnimal.levelProgress / 5f;
         level.text = "Lv. " + currentClickAnimal.level.ToString();

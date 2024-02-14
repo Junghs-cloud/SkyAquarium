@@ -1,25 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class marineAnimal
 {
     public int instanceID;
-    string marineAnimalName;
+    public string marineAnimalName;
+    public string instantiateObjectName;
     public int level;
     public int levelProgress;
     public long lastCollect;
 
-    public marineAnimal(int instanceID, string marineAnimalName, int level, int levelProgress, long lastCollect)
+    public marineAnimal(int instanceID, string marineAnimalName, string intstantiateObjectName, int level, int levelProgress, long lastCollect)
     {
         this.instanceID = instanceID;
         this.marineAnimalName = marineAnimalName;
+        this.instantiateObjectName= intstantiateObjectName;
         this.level = level;
         this.levelProgress = levelProgress;
         this.lastCollect = lastCollect;
     }
 }
 
+[Serializable]
 public class Item
 {
     public string itemName;
@@ -34,10 +39,11 @@ public class Item
     }
 }
 
+[Serializable]
 public class groundItem
 {
     public string itemName;
-    string itemSpriteName;
+    public string itemSpriteName;
     public float x;
     public float y;
 
@@ -50,9 +56,27 @@ public class groundItem
     }
 }
 
+[System.Serializable]
+public class Serialization<T>
+{
+    [SerializeField]
+    List<T> itemList;
+    public List<T> ToList()
+    {
+        return itemList;
+    }
+    public Serialization(List<T> itemList)
+    {
+        this.itemList = itemList;
+
+    }
+}
+
+[Serializable]
 public class playerData : MonoBehaviour
 {
     public static playerData instance;
+    [Header("-Player Inforamtion-")]
     public string nickname;
     public int rank;
     public int EXP;
@@ -68,9 +92,18 @@ public class playerData : MonoBehaviour
     public List<Item> inventory;
     public List<groundItem> groundItems;
     public List<inventoryCell> inventoryCells;
-    public bool[] musicUnLock = new bool[8];
+
+    [Space(10f)]
+    [Header("-About Shop ETC Section-")]
     public bool hasMoonBackground;
     public int fishAmountLevel;
+
+    [Space (10f)]
+    [Header("-About Sound-")]
+    public bool[] musicUnLock = new bool[8];
+    public int currentBGM;
+    public float SFXVolume;
+    public float BGMVolume;
 
     void Awake()
     {
@@ -78,21 +111,13 @@ public class playerData : MonoBehaviour
         {
             instance = this;
         }
-    }
-
-    void Start()
-    {
         marineAnimals = new List<marineAnimal>();
         inventory = new List<Item>();
         groundItems = new List<groundItem>();
         inventoryCells = new List<inventoryCell>();
         hasMoonBackground = false;
+        currentBGM = 0;
         setMusicUnLock();
-       
-        //testDatas
-        groundItems.Add(new groundItem("산호 A-1", "coralA_1", -10.22f, -6.96f));
-        groundItems.Add(new groundItem("산호 A-1", "coralA_1", -0.16f, -6.84f));
-        groundItems.Add(new groundItem("산호 A-2", "coralA_2", -16.3f, -11.04f));
     }
 
     void setMusicUnLock()
@@ -148,5 +173,11 @@ public class playerData : MonoBehaviour
             playerUIManager.instance.changeRankText();
         }
         playerUIManager.instance.updateEXPSlider();
+    }
+
+    public void setPlayerNickname(string playerNickname)
+    {
+        nickname = playerNickname;
+        playerUIManager.instance.setPlayerNickname();
     }
 }
