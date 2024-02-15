@@ -34,6 +34,7 @@ public class shopAddMoonCell : shopCell
             playerData.instance.hasMoonBackground = true;
             moonImage.SetActive(true);
             soldOutImage.SetActive(true);
+            setting.instance.playSFX(setting.sfx.coin);
         }
         else
         {

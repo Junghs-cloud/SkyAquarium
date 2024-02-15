@@ -52,5 +52,6 @@ public class shopAddFishCell : shopCell
         }
         utility.addCommaToTMPTexts(payCosts[currentFishLevel], costText);
         getItemCost();
+        setting.instance.playSFX(setting.sfx.coin);
     }
 }

@@ -21,6 +21,8 @@ public class setting : MonoBehaviour
 
     public TMP_Text bgmNameText;
     public AudioSource SFXPlayer;
+    public AudioClip[] sfxList;
+    public enum sfx { fishSplash = 0, coin = 1, buttonPress = 2, rankUp = 3};
 
     void Awake()
     {
@@ -95,6 +97,7 @@ public class setting : MonoBehaviour
         int volumePercent = (int)(slider.value * 100);
         playerData.instance.SFXVolume = slider.value;
         sfxVolumeText.text = volumePercent + "%";
+        SFXPlayer.volume = slider.value;
         dataManager.instance.saveToJson();
     }
 
@@ -110,13 +113,17 @@ public class setting : MonoBehaviour
     public void setSFXandBGMVolume(float sfxVolume, float bgmVolume)
     {
         sfxVolumeSlider.value = sfxVolume;
+        sfxVolumeText.text = (int)(sfxVolume * 100) + "%";
+        SFXPlayer.volume = sfxVolume;
         bgmVolumeSlider.value = bgmVolume;
-        sfxVolumeText.text = (int) (sfxVolume * 100) + "%";
         bgmVolumeText.text =(int) (bgmVolume * 100) + "%";
+        audioSource.volume = bgmVolume;
     }
 
-    public void playFishSplashSFX()
+    public void playSFX(sfx soundEffect)
     {
+        int index = (int)soundEffect;
+        SFXPlayer.clip = sfxList[index];
         SFXPlayer.Play();
     }
 }

@@ -174,6 +174,7 @@ public class decorationManager : MonoBehaviour
         selectedItem = null;
         decorationOptions.SetActive(false);
         dataManager.instance.saveToJson();
+        setting.instance.playSFX(setting.sfx.coin);
     }
 
     void confirm()

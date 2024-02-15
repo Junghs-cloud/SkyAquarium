@@ -171,6 +171,7 @@ public class playerData : MonoBehaviour
             EXP -= levelSystem.instance.currentLevelNeededEXP;
             levelSystem.instance.unLockObjectsWithRank(rank);
             playerUIManager.instance.changeRankText();
+            setting.instance.playSFX(setting.sfx.rankUp);
         }
         playerUIManager.instance.updateEXPSlider();
     }

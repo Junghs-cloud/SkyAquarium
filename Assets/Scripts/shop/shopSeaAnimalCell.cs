@@ -56,7 +56,7 @@ public class shopSeaAnimalCell : shopCell
 
     void buySeaAnimal()
     {
-        setting.instance.playFishSplashSFX();
+        setting.instance.playSFX(setting.sfx.fishSplash);
         shopPanel.SetActive(false);
         GameObject instantiatedSeaAnimal = Instantiate(seaAnimalPrefab);
         if (paymentType == payment.money)

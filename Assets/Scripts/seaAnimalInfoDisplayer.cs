@@ -68,10 +68,10 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         }
         if (earnMoney != 0)
         {
-            Debug.Log(earnMoney);
             currentClickMarineAnimal.lastCollect = currentUnixTime;
             playerData.instance.setMoney(playerData.instance.money + (int)earnMoney);
             dataManager.instance.saveToJson();
+            setting.instance.playSFX(setting.sfx.coin);
         }
     }
 

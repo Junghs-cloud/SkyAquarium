@@ -35,6 +35,7 @@ public class shopUnLockMusicCell : shopCell
             playerData.instance.musicUnLock[unlockBGMNum + 3] = true;
             playerData.instance.setMoney(playerData.instance.money - itemCost);
             soldOutImage.SetActive(true);
+            setting.instance.playSFX(setting.sfx.coin);
         }
         else
         {
