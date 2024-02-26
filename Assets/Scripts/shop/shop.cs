@@ -48,7 +48,7 @@ public class shop : MonoBehaviour
         makeButtonSmall(etcButton, 90);
     }
 
-    void setButtonsPostion2()
+    public void setButtonsPostion2()
     {
         fishPanel.SetActive(false);
         buildingPanel.SetActive(true);
@@ -143,16 +143,8 @@ public class shopCell : MonoBehaviour
 
     public void getItemCost()
     {
-        string tempItemCostString = buyButton.gameObject.transform.GetChild(0).GetComponent<TMP_Text>().text;
-        string itemCostString = "";
-        for (int i = 0; i < tempItemCostString.Length; i++)
-        {
-            if (tempItemCostString[i] != ',')
-            {
-                itemCostString += tempItemCostString[i];
-            }
-        }
-        itemCost = int.Parse(itemCostString);
+        TMP_Text costTMPText = buyButton.gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
+        itemCost = utility.getCostStringToInt(costTMPText);
     }
 
     public virtual bool canBuy()
@@ -173,14 +165,6 @@ public class shopCell : MonoBehaviour
 
     public virtual void buyItem()
     {
-        if (canBuy())
-        {
-            Debug.Log("부모-살 수 있음");
-        }
-        else
-        {
-            Debug.Log("구매 불가");
-        }
     }
 
 }

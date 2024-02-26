@@ -10,7 +10,7 @@ public class decorationManager : MonoBehaviour
     public GameObject inventoryButton;
     public GameObject decorationOptions;
 
-    GameObject selectedItem;
+    public GameObject selectedItem;
     Vector3 selectedItemOriginalPosition;
     string selectedItemName;
     string selectedItemSpriteName;
@@ -191,6 +191,11 @@ public class decorationManager : MonoBehaviour
             playerData.instance.groundItems.Add(new groundItem(selectedItemName, selectedItemSpriteName, selectedItemPosition.x, selectedItemPosition.y));
             playerData.instance.setMoney(playerData.instance.money - buyingItemCost);
             currentEditType = editType.NULL;
+            if (playerData.instance.isTutorialFinished == false)
+            {
+                tutorial.instance.setClickObject(selectedItem);
+                tutorial.instance.setClickObject(selectedItem, 14);
+            }
         }
         selectedItem = null;
         decorationOptions.SetActive(false);
@@ -239,5 +244,19 @@ public class decorationManager : MonoBehaviour
     public void setBuyingItemCost(int itemCost)
     {
         buyingItemCost = itemCost;
+    }
+
+    public void lockButtons()
+    {
+        cancelButton.interactable = false;
+        storeButton.interactable = false;
+        sellButton.interactable = false;
+    }
+
+    public void unlockButtons()
+    {
+        cancelButton.interactable = true;
+        storeButton.interactable = true;
+        sellButton.interactable = true;
     }
 }

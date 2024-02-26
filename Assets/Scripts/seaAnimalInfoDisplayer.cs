@@ -38,11 +38,9 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
         {
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero, 0f);
-            if (!decorationManager.instance.isInEditMode() && hit.collider != null && hit.transform.gameObject.tag == "seaAnimal")
+            if (isClickedSeaAnimal(hit))
             {
-                currentClickAnimal = hit.transform.gameObject.GetComponent<seaAnimal>();
-                currentClickMarineAnimal = playerData.instance.marineAnimals.Find(seaAnimal => seaAnimal.instanceID == currentClickAnimal.gameObject.GetInstanceID());
-                seaAnimalName.text = currentClickAnimal.seaAnimalName;
+                assginCurrentClickSeaAnimal(hit);
                 updateLevelInformation();
                 updateMoneyAndFoodInformation();
                 collectButton.gameObject.SetActive(true);
@@ -50,11 +48,34 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
             }
             else
             {
+                if (playerData.instance.isTutorialFinished == false)
+                {
+                    return;
+                }
                 statusPanel.SetActive(false);
                 collectButton.gameObject.SetActive(false);
                 statusButton.SetActive(false);
             }
         }
+    }
+
+    bool isClickedSeaAnimal(RaycastHit2D hit)
+    {
+        if (!decorationManager.instance.isInEditMode() && hit.collider != null && hit.transform.gameObject.tag == "seaAnimal")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void assginCurrentClickSeaAnimal(RaycastHit2D hit)
+    {
+        currentClickAnimal = hit.transform.gameObject.GetComponent<seaAnimal>();
+        currentClickMarineAnimal = playerData.instance.marineAnimals.Find(seaAnimal => seaAnimal.instanceID == currentClickAnimal.gameObject.GetInstanceID());
+        seaAnimalName.text = currentClickAnimal.seaAnimalName;
     }
 
     void collect()
@@ -77,7 +98,7 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
 
     void feed()
     {
-        if (currentClickAnimal.level == 10 && currentClickAnimal.levelProgress == 5)
+        if (currentClickAnimal.level == 10 || playerData.instance.food < currentClickAnimal.foodAmount)
         {
             return;
         }
@@ -98,6 +119,10 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
 
     void sell()
     {
+        if (playerData.instance.isTutorialFinished == false)
+        {
+            return;
+        }
         playerData.instance.marineAnimals.Remove(currentClickMarineAnimal);
         dataManager.instance.saveToJson();
         playerData.instance.setCurrentSeaAnimal(playerData.instance.currentSeaAnimal - 1);
@@ -119,12 +144,10 @@ public class seaAnimalInfoDisplayer : MonoBehaviour
 
     void updateLevelInformation()
     {
-        Debug.Log(currentClickAnimal+"  "+currentClickMarineAnimal);
         levelProgressText.text = currentClickAnimal.levelProgress.ToString() + " / 5";
         levelProgressBar.value = (float) currentClickAnimal.levelProgress / 5f;
         level.text = "Lv. " + currentClickAnimal.level.ToString();
         currentClickMarineAnimal.level = currentClickAnimal.level;
         currentClickMarineAnimal.levelProgress = currentClickAnimal.levelProgress;
     }
-
 }

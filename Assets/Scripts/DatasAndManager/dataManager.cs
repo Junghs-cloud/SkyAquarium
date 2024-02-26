@@ -12,6 +12,8 @@ public class dataManager : MonoBehaviour
 
     public GameObject nicknameSettingPanel;
     public TMP_InputField nicknameInputField;
+    public GameObject blackBackground;
+    public GameObject tutorialCanvas;
 
     void Awake()
     {
@@ -45,8 +47,24 @@ public class dataManager : MonoBehaviour
         }
         catch
         {
+            blackBackground.SetActive(true);
             nicknameSettingPanel.SetActive(true);
             setNewPlayerData();
+        }
+    }
+
+    void setPlayerData(string saveData)
+    {
+        JsonUtility.FromJsonOverwrite(saveData, playerData.instance);
+        setSoundSetting();
+        setMarineAnimals();
+        setGroundItems();
+        setInventory();
+        if (playerData.instance.isTutorialFinished == false)
+        {
+            tutorialCanvas.SetActive(true);
+            tutorial.instance.shopButton.interactable = false;
+            tutorial.instance.currentTutorialLine = playerData.instance.currentTutorialLine - 1;
         }
     }
 
@@ -102,15 +120,6 @@ public class dataManager : MonoBehaviour
         }
     }
 
-    void setPlayerData(string saveData)
-    {
-        JsonUtility.FromJsonOverwrite(saveData, playerData.instance);
-        setSoundSetting();
-        setMarineAnimals();
-        setGroundItems();
-        setInventory();
-    }
-
     void setSoundSetting()
     {
         setting.instance.bgmNum = playerData.instance.currentBGM;
@@ -122,17 +131,19 @@ public class dataManager : MonoBehaviour
         playerData.instance.rank = 1;
         playerData.instance.EXP = 0;
 
-        playerData.instance.setMoney(3000);
+        playerData.instance.setMoney(7500);
         playerData.instance.setDiamond(0);
         playerData.instance.setFood(0);
 
         playerData.instance.currentSeaAnimal = 0;
         playerData.instance.maxSeaAnimal = 8;
+        
     }
 
     public void setPlayerNickname()
     {
         playerData.instance.setPlayerNickname(nicknameInputField.text);
-        saveToJson();
+        tutorialCanvas.SetActive(true);
+        blackBackground.SetActive(false);
     }
 }

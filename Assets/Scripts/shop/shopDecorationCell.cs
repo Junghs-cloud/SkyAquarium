@@ -8,6 +8,7 @@ public class shopDecorationCell : shopCell
 {
     public GameObject decorationOptions;
     public string spriteName;
+
     void Start()
     {
         buyButton = transform.GetChild(0).GetComponent<Button>();
@@ -27,6 +28,7 @@ public class shopDecorationCell : shopCell
             decorationOptions.SetActive(true);
             decorationManager.instance.setBuyingItemCost(itemCost);
             decorationManager.instance.currentEditType = decorationManager.editType.buy;
+            Debug.Log(decorationManager.instance.currentEditType + " " + decorationManager.instance.selectedItem);
             shopPanel.SetActive(false);
         }
         else
@@ -55,6 +57,8 @@ public class shopDecorationCell : shopCell
             generatedItem.AddComponent<BoxCollider2D>();
             generatedItem.GetComponent<BoxCollider2D>().enabled = true;
         }
+        int CloneIndex = generatedItem.name.IndexOf("(Clone)");
+        generatedItem.name = generatedItem.name.Substring(0, CloneIndex);
         decorationManager.instance.setSelectedItem(generatedItem, itemName, spriteName);
         
     }

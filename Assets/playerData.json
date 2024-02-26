@@ -1,0 +1,40 @@
+{
+    "nickname": "player 01",
+    "rank": 1,
+    "EXP": 0,
+    "money": 7000,
+    "diamond": 0,
+    "food": 0,
+    "currentSeaAnimal": 1,
+    "maxSeaAnimal": 8,
+    "isTutorialFinished": false,
+    "currentTutorialLine": 1,
+    "marineAnimals": [
+        {
+            "instanceID": -16702,
+            "marineAnimalName": "금붕어",
+            "instantiateObjectName": "goldfish",
+            "level": 1,
+            "levelProgress": 0,
+            "lastCollect": 1708951372
+        }
+    ],
+    "inventory": [],
+    "groundItems": [],
+    "inventoryCells": [],
+    "hasMoonBackground": false,
+    "fishAmountLevel": 0,
+    "musicUnLock": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false
+    ],
+    "currentBGM": 0,
+    "SFXVolume": 0.0,
+    "BGMVolume": 0.0
+}

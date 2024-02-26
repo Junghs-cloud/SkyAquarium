@@ -16,6 +16,8 @@ public class foodProductionManager : MonoBehaviour
 
     public GameObject canNotBuyPanel;
     TMP_Text canNotBuyPanelText;
+
+    public bool tutorialLock;
     void Awake()
     {
         if (instance == null)
@@ -27,6 +29,7 @@ public class foodProductionManager : MonoBehaviour
     void Start()
     {
         canNotBuyPanelText = canNotBuyPanel.transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
+        tutorialLock = false;
     }
 
     void Update()
@@ -35,6 +38,10 @@ public class foodProductionManager : MonoBehaviour
         {
             Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero, 0f);
+            if (tutorialLock == true)
+            {
+                return;
+            }
             if (isClickedBuilding(hit))
             {
                 GameObject selectedBuilding = hit.transform.gameObject;
@@ -87,7 +94,14 @@ public class foodProductionManager : MonoBehaviour
             playerData.instance.setMoney(playerData.instance.money - selectedItem.cost);
             selectedBuildingScript.currentProduction = selectedItem;
             selectedBuildingScript.productionStartTime = utility.getCurrentUnixTime();
-            selectedBuildingScript.productionEndTime = selectedBuildingScript.productionStartTime + selectedItem.timeLong;
+            if (playerData.instance.isTutorialFinished == false)
+            {
+                selectedBuildingScript.productionEndTime = utility.getCurrentUnixTime();
+            }
+            else
+            {
+                selectedBuildingScript.productionEndTime = selectedBuildingScript.productionStartTime + selectedItem.timeLong;
+            }
             foodProductionPanel.SetActive(false);
         }
     }
@@ -100,5 +114,15 @@ public class foodProductionManager : MonoBehaviour
         selectedBuildingScript.finishObject.SetActive(false);
         selectedBuildingScript.currentProduction = null;
         selectedBuildingScript.isProductionFinished = false;
+    }
+
+    public void setTutorialLock()
+    {
+        tutorialLock = true;
+    }
+
+    public void setTutorialUnlock()
+    {
+        tutorialLock = false;
     }
 }

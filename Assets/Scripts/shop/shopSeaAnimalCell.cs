@@ -71,5 +71,9 @@ public class shopSeaAnimalCell : shopCell
         playerData.instance.setCurrentSeaAnimal(playerData.instance.currentSeaAnimal + 1);
         playerData.instance.marineAnimals.Add(new marineAnimal(instantiatedSeaAnimal.GetInstanceID(), itemName, spriteName, 1, 0, currentTime));
         dataManager.instance.saveToJson();
+        if (playerData.instance.isTutorialFinished == false)
+        {
+            tutorial.instance.setClickObject(instantiatedSeaAnimal);
+        }
     }
 }

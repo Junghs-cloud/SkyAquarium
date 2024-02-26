@@ -88,6 +88,9 @@ public class playerData : MonoBehaviour
     public int currentSeaAnimal;
     public int maxSeaAnimal;
 
+
+    public bool isTutorialFinished;
+    public int currentTutorialLine;
     public List<marineAnimal> marineAnimals;
     public List<Item> inventory;
     public List<groundItem> groundItems;
@@ -116,7 +119,9 @@ public class playerData : MonoBehaviour
         groundItems = new List<groundItem>();
         inventoryCells = new List<inventoryCell>();
         hasMoonBackground = false;
+        isTutorialFinished = false;
         currentBGM = 0;
+        currentTutorialLine = -1;
         setMusicUnLock();
     }
 

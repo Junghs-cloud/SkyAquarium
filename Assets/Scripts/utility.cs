@@ -36,4 +36,19 @@ public class utility : MonoBehaviour
         }
     }
 
+    public static int getCostStringToInt(TMP_Text costText)
+    {
+        string originalCostString = costText.text;
+        string itemCostString = "";
+        for (int i = 0; i < originalCostString.Length; i++)
+        {
+            if (originalCostString[i] != ',')
+            {
+                itemCostString += originalCostString[i];
+            }
+        }
+        int itemCost = int.Parse(itemCostString);
+        return itemCost;
+    }
+
 }
